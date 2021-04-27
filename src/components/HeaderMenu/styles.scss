@@ -1,0 +1,32 @@
+@import '../../assets/scss/settings.scss';
+
+.header__menu {
+}
+
+.header__menu--li {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $primary;
+        transition: all 0.2s ease-in-out;
+        transform: scaleX(0%);
+        pointer-events: none;
+    }
+
+    &:hover {
+        &::after {
+            transform: scaleX(100%);
+        }
+    }
+
+    a {
+        padding: 0.2rem;
+        @include font-size(14);
+    }
+}

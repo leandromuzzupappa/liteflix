@@ -1,0 +1,15 @@
+@import '../../assets/scss/settings.scss';
+
+#LiteflixLogo {
+    width: 95px;
+    .st0 {
+        fill: $primary;
+        transition: all 0.1s;
+    }
+
+    &:hover {
+        .st0 {
+            fill: $white;
+        }
+    }
+}

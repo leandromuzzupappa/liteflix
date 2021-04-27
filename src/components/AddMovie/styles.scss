@@ -1,0 +1,44 @@
+@import '../../assets/scss/settings.scss';
+
+#addMovie {
+    background: $primary;
+    @include font-size(14);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 4rem;
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+
+    img {
+        width: 17px;
+        transition: all 0.4s ease-in-out;
+    }
+
+    &::after {
+        content: 'Agregar película';
+        position: absolute;
+        width: 120px;
+        opacity: 1;
+        transition: all 1s;
+        transform: translateX(150px);
+    }
+
+    &:hover {
+        width: 180px;
+        background: $primaryHover;
+
+        img {
+            transform: translateX(-63px);
+        }
+
+        &::after {
+            opacity: 1;
+            transform: translateX(10px);
+        }
+    }
+}

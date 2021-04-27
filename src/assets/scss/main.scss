@@ -1,0 +1,57 @@
+@import 'settings.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: 400;
+    color: $white;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+body {
+    font-family: $montserrat;
+    font-size: 16px;
+    background: $gray5;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    border: 0;
+    display: block;
+}
+
+input {
+    // Chrome, Safari, Edge, Opera
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    // Firefox
+    &[type='number'] {
+        -moz-appearance: textfield;
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+.dnone {
+    display: none !important;
+}

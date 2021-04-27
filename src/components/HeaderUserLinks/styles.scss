@@ -1,0 +1,216 @@
+@import '../../assets/scss/settings.scss';
+
+@keyframes notification__animation {
+    from {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    to {
+        transform: scale(3);
+        opacity: 0.2;
+    }
+}
+
+.header__links {
+}
+
+.header__links--notifications {
+    position: relative;
+
+    img {
+        width: 25px;
+        transition: all 0.2s;
+    }
+
+    .notifications__badge {
+        position: absolute;
+        top: 3px;
+        right: 2px;
+        display: none;
+        width: 8px;
+        height: 8px;
+        background: $primary;
+        border-radius: 1rem;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: $primary;
+            border-radius: 1rem;
+            animation: notification__animation 1s infinite;
+        }
+    }
+
+    &:hover {
+        img {
+            transform: rotate(-10deg);
+        }
+    }
+
+    &.header__links--notifications-active {
+        .notifications__badge {
+            display: block;
+        }
+    }
+}
+
+.header__links--users {
+    position: relative;
+
+    span {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    svg {
+        display: block;
+        width: 35px;
+        margin-right: 10px;
+        .cls-1 {
+            fill: #003bff;
+        }
+
+        .cls-2 {
+            fill: #4a90e2;
+        }
+    }
+
+    img {
+        width: 15px;
+        transition: all 0.2s;
+    }
+
+    &.header__links--users-hovered {
+        img {
+            transform: rotate(-180deg);
+        }
+    }
+}
+
+.modalHover.header__links--users-modal {
+    ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+        li {
+            width: 100%;
+        }
+    }
+
+    a {
+        @include font-size(12);
+        color: $gray5;
+    }
+
+    .modal__accounts {
+        a {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            border: 1px solid transparent;
+            border-radius: 2rem;
+            padding: 5px;
+
+            color: $gray3;
+            box-shadow: 0px -1px 0px 0px transparentize($black, 1);
+            transition: all 0.4s ease-in-out;
+
+            svg {
+                * {
+                    transition: all 0.2s;
+                }
+
+                .cls-1 {
+                    fill: $gray2;
+                }
+
+                .cls-2 {
+                    fill: $gray4;
+                }
+            }
+
+            &:hover {
+                border: 1px solid $gray1;
+                box-shadow: 0px 3px 10px 0px transparentize($black, 0.8);
+
+                color: $black;
+
+                #user-pepitos {
+                    .cls-1 {
+                        fill: #8c7ae6;
+                    }
+
+                    .cls-2 {
+                        fill: #e1b12c;
+                    }
+                }
+
+                #user-oreos {
+                    .cls-1 {
+                        fill: #dcdde1;
+                    }
+                    .cls-2 {
+                        fill: #e84118;
+                    }
+                }
+
+                #user-surtidas {
+                    .cls-1 {
+                        fill: #192a56;
+                    }
+                    .cls-2 {
+                        fill: #00a8ff;
+                    }
+                }
+            }
+        }
+    }
+
+    .modal__links {
+        margin-top: 1rem;
+
+        li:last-child {
+            a {
+                border-bottom: 0px solid transparent;
+                padding-bottom: 0rem;
+                margin-bottom: 0.4rem;
+                font-weight: 700;
+            }
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid $gray2;
+            padding-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
+
+            &::before {
+                content: '';
+                position: relative;
+                display: block;
+                width: 0px;
+                height: 2px;
+                background: $primary;
+                margin-right: 0.5rem;
+                transition: all 0.2s;
+            }
+
+            &:hover {
+                color: $black;
+
+                &::before {
+                    width: 15px;
+                }
+            }
+        }
+    }
+}
