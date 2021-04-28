@@ -25,7 +25,7 @@ const HomePage = (props) => {
         if (nowPlaying.length > 0) {
             setInterval(() => {
                 setCoverData(nowPlaying[Math.floor(Math.random() * nowPlaying.length)]);
-            }, 15000);
+            }, 30000);
         }
     }, [nowPlaying]);
 

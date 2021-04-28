@@ -3,7 +3,7 @@
 .fullscreenCover {
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: 95vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -21,12 +21,14 @@
         background: transparent;
         background: -webkit-linear-gradient(
             to top,
-            transparentize($black, 0.4),
+            $black,
+            transparentize($black, 0.5) 15%,
             transparentize($black, 0.8)
         );
         background: linear-gradient(
             to top,
-            transparentize($black, 0.4),
+            $black,
+            transparentize($black, 0.5) 15%,
             transparentize($black, 0.8)
         );
         z-index: -1;
@@ -47,12 +49,13 @@
         font-weight: 700;
         @include font-size(96);
         line-height: 90px;
-        width: 90%;
+        width: 100%;
         max-width: 800px;
         margin-bottom: 1.2rem;
     }
 
     .fullscreenCover__actions {
+        position: relative;
         margin-bottom: 2rem;
         display: flex;
         gap: 2rem;
@@ -71,11 +74,17 @@
 
             svg {
                 width: 20px;
+                pointer-events: none;
             }
 
             &:hover {
                 background: $primary;
                 border: 1px solid $primary;
+            }
+
+            &:active {
+                border: 1px solid $primary;
+                background: $primaryHover;
             }
         }
     }
@@ -107,5 +116,86 @@
         height: 100%;
         object-fit: cover;
         z-index: -2;
+    }
+}
+
+@media (max-width: 1000px) {
+    .fullscreenCover {
+        justify-content: flex-end;
+        align-items: center;
+        padding-bottom: 4rem;
+
+        .fullscreenCover__subtitle {
+            @include font-size(20);
+        }
+
+        .fullscreenCover__title {
+            text-align: center;
+            @include font-size(80);
+        }
+
+        .fullscreenCover__description {
+            width: 100%;
+            max-width: 100%;
+
+            h4 {
+                text-align: center;
+            }
+
+            h4,
+            p {
+                @include font-size(16);
+            }
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    .fullscreenCover {
+        padding: 0 1rem;
+        padding-bottom: 6rem;
+
+        .fullscreenCover__subtitle {
+            @include font-size(18);
+        }
+
+        .fullscreenCover__title {
+            @include font-size(72);
+            line-height: 74px;
+            margin-bottom: 1.5rem;
+        }
+
+        .fullscreenCover__actions {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+
+            button {
+                background: transparentize($black, 0.5);
+            }
+
+            .fullscreenCover__actions--play {
+                padding: 1rem 2rem;
+            }
+
+            .fullscreenCover__actions--addToList {
+                position: absolute;
+                right: 0;
+
+                padding-left: 0.5rem;
+                padding-right: 0.05rem;
+
+                background: transparent;
+                border: 1px solid $white;
+
+                span {
+                    display: none;
+                }
+            }
+        }
+
+        .fullscreenCover__description {
+            display: none;
+        }
     }
 }

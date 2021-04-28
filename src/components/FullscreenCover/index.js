@@ -15,13 +15,13 @@ const FullscreenCover = (props) => {
             <h1 className="fullscreenCover__title">{movie.title}</h1>
 
             <div className="fullscreenCover__actions">
-                <button>
+                <button class="fullscreenCover__actions--play">
                     <IconPlay />
-                    Reproducir
+                    <span>Reproducir</span>
                 </button>
-                <button>
+                <button class="fullscreenCover__actions--addToList">
                     <IconPlus />
-                    Mi lista
+                    <span>Mi lista</span>
                 </button>
             </div>
 
