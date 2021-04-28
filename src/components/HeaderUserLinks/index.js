@@ -7,7 +7,7 @@ import { useState } from 'react';
 // Components
 import HeaderMenuItem from '../HeaderMenuItem';
 import ModalHover from '../modals/ModalHover';
-import UserProfile from '../icons/UserProfile';
+import UserProfile from '../icons/IconUserProfile';
 
 const HeaderUserLinks = (props) => {
     const [userAccountModal, setUserAccountModal] = useState('');

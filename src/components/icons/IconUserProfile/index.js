@@ -1,4 +1,4 @@
-const UserProfile = (props) => {
+const IconUserProfile = (props) => {
     return (
         <svg id={props.userProfileId} data-name="Layer 2" viewBox="0 0 23 23">
             <circle id="bg" className="cls-1" cx="11.5" cy="11.5" r="11.24" />
@@ -11,4 +11,4 @@ const UserProfile = (props) => {
     );
 };
 
-export default UserProfile;
+export default IconUserProfile;

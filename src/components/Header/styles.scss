@@ -11,8 +11,14 @@
 }
 
 .header {
+    position: fixed;
+    width: 100%;
     padding: 1rem 6rem;
     gap: 1.5rem;
+    z-index: 10;
+    background: transparent;
+    background: -webkit-linear-gradient(to bottom, transparentize($black, 0.6), transparent);
+    background: linear-gradient(to bottom, transparentize($black, 0.6), transparent);
 }
 
 .header__links {
