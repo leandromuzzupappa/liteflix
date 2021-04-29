@@ -1,0 +1,152 @@
+@import '../../../assets/scss/settings.scss';
+
+.cardSmall {
+    position: relative;
+    border-radius: 0.3rem;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        background: transparent;
+        pointer-events: none;
+        background: -webkit-linear-gradient(
+            to top,
+            transparentize($black, 0.2),
+            transparentize($black, 0.8)
+        );
+        background: linear-gradient(
+            to top,
+            transparentize($black, 0.2),
+            transparentize($black, 0.8)
+        );
+        transition: all 0.2s;
+        opacity: 0;
+    }
+
+    &:hover {
+        &::after {
+            opacity: 1;
+        }
+
+        .cardSmall--data {
+            bottom: 0.5rem;
+            opacity: 1;
+        }
+
+        button {
+            opacity: 1;
+        }
+
+        #LiteflixLogo {
+            path {
+                fill: $white;
+            }
+        }
+    }
+
+    #LiteflixLogo {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        width: 75px;
+        z-index: 1;
+    }
+
+    .cardSmall--data {
+        position: absolute;
+        bottom: -2rem;
+        left: 0.5rem;
+        opacity: 0;
+        transition: all 0.2s;
+        z-index: 1;
+
+        h4 {
+            @include font-size(14);
+            font-weight: 700;
+        }
+        p {
+            @include font-size(12);
+        }
+    }
+
+    button {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border: 1px solid $white;
+        border-radius: 4rem;
+        background: transparent;
+        transition: all 0.2s;
+        z-index: 1;
+        opacity: 0;
+        svg {
+            margin: 0;
+            width: 25px;
+
+            path {
+                transition: all 0.2s;
+            }
+        }
+
+        &:hover {
+            border: 1px solid $primary;
+            background: transparentiz3($black, 0.3);
+
+            svg {
+                path {
+                    fill: $primary;
+                    stroke: $primary;
+                }
+            }
+        }
+
+        &:active {
+            border: 1px solid $primaryHover;
+
+            svg {
+                path {
+                    fill: $primaryHover;
+                    stroke: $primaryHover;
+                }
+            }
+        }
+    }
+
+    .cardSmall--item--play {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        svg {
+            margin-left: 0.2rem;
+        }
+    }
+
+    .cardSmall--item--like {
+        top: 0.8rem;
+        right: 1rem;
+    }
+
+    .cardSmall--item--add {
+        top: 0.8rem;
+        right: 3.8rem;
+        svg {
+            width: 15px;
+        }
+    }
+
+    .cardSmall--item--like,
+    .cardSmall--item--add {
+        width: 30px;
+        height: 30px;
+    }
+}
