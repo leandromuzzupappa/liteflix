@@ -1,20 +1,48 @@
 import './styles.scss';
+import IconHamburger from '../icons/iconHamburger';
 
+import { useState, useEffect } from 'react';
+
+// HOC
+import { esDesktop } from '../../hoc/windowSizes';
+
+// Components
 import LiteflixLogo from '../LiteflixLogo';
 import HeaderMenu from '../HeaderMenu';
 import HeaderUserLinks from '../HeaderUserLinks';
+import HeaderMenuMobile from '../HeaderMenuMobile';
 
 const Header = (props) => {
+    const isDesktop = esDesktop();
+    const [menuMobileOpened, setMenuMobileOpened] = useState(false);
+
+    const handleHamburgerBtn = () => {
+        setMenuMobileOpened(!menuMobileOpened);
+    };
+
     return (
-        <header className="header">
-            <div id="header__logo">
-                <LiteflixLogo />
-            </div>
+        <>
+            <header className={`header ${menuMobileOpened ? 'header__menuMobile--opened' : ''}`}>
+                {!isDesktop && (
+                    <button className="header__menuMobile--btn" onClick={handleHamburgerBtn}>
+                        <IconHamburger classes={menuMobileOpened ? 'iconHamburger--opened' : ''} />
+                    </button>
+                )}
 
-            <HeaderMenu />
+                <div className="header__logo">
+                    <LiteflixLogo />
+                </div>
 
-            <HeaderUserLinks />
-        </header>
+                {isDesktop ? (
+                    <>
+                        <HeaderMenu />
+                        <HeaderUserLinks />
+                    </>
+                ) : (
+                    <HeaderMenuMobile />
+                )}
+            </header>
+        </>
     );
 };
 

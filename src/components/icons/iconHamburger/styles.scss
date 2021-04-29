@@ -1,0 +1,31 @@
+@import '../../../assets/scss/settings.scss';
+
+.iconHamburger {
+    * {
+        transition: all 0.2s ease-in-out;
+    }
+
+    .cls-1,
+    .cls-close1,
+    .cls-close2 {
+        fill: none;
+        stroke: $white;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+        transform-origin: center center;
+    }
+
+    &.iconHamburger--opened {
+        .cls-1 {
+            transform: scaleX(0);
+        }
+
+        .cls-close1 {
+            transform: scale(0.8) rotate(45deg);
+        }
+        .cls-close2 {
+            transform: scale(0.8) rotate(-45deg);
+        }
+    }
+}

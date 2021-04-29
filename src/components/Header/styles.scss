@@ -19,8 +19,66 @@
     background: transparent;
     background: -webkit-linear-gradient(to bottom, transparentize($black, 0.6), transparent);
     background: linear-gradient(to bottom, transparentize($black, 0.6), transparent);
+
+    &.header__menuMobile--opened {
+        .header__menuMobile {
+            left: 0;
+            width: 100%;
+        }
+
+        .header__logo {
+            left: 20%;
+            transform: translateX(0%);
+        }
+    }
+}
+
+.header__logo {
+    transition: all 0.2s;
 }
 
 .header__links {
     margin-left: auto;
+}
+
+.header__menuMobile--btn {
+    background: transparent;
+    border: 0;
+    width: 30px;
+    margin-right: 1rem;
+}
+
+@media (max-width: 1200px) {
+    .header {
+        padding: 1rem 4rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .header {
+        .header__logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        &.header__menuMobile--opened {
+            .header__logo {
+                left: 12%;
+            }
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    .header {
+        padding: 1rem 2rem;
+
+        &.header__menuMobile--opened {
+            .header__logo {
+                left: 20%;
+                transform: translateX(0%);
+            }
+        }
+    }
 }

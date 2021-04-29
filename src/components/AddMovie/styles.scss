@@ -42,3 +42,19 @@
         }
     }
 }
+
+@media (max-width: 1200px) {
+    #addMovie {
+        &:hover {
+            width: 40px;
+
+            img {
+                transform: translateX(0px);
+            }
+
+            &::after {
+                display: none;
+            }
+        }
+    }
+}

@@ -119,6 +119,12 @@
     }
 }
 
+@media (max-width: 1200px) {
+    .fullscreenCover {
+        padding: 0 4rem;
+    }
+}
+
 @media (max-width: 1000px) {
     .fullscreenCover {
         justify-content: flex-end;

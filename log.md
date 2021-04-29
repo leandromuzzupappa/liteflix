@@ -1,0 +1,1 @@
+DRY --> app global padding
