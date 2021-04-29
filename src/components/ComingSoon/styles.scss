@@ -1,0 +1,113 @@
+@import '../../assets/scss/settings.scss';
+
+.comingSoon {
+    position: relative;
+    width: 100%;
+    top: 0rem;
+    padding: 0 6rem;
+    margin-top: -10rem;
+
+    h2 {
+        @include font-size(20);
+        font-weight: 700;
+        margin-bottom: 1.3rem;
+    }
+
+    .comingSoon__movies {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .comingSoon__movies--item {
+        position: relative;
+        border-radius: 0.3rem;
+        overflow: hidden;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: transparent;
+            pointer-events: none;
+            background: -webkit-linear-gradient(
+                to top,
+                transparentize($black, 0.2),
+                transparentize($black, 0.8)
+            );
+            background: linear-gradient(
+                to top,
+                transparentize($black, 0.2),
+                transparentize($black, 0.8)
+            );
+            transition: all 0.2s;
+            opacity: 0;
+        }
+
+        &:hover {
+            &::after {
+                opacity: 1;
+            }
+
+            .comingSoon__movies--data {
+                bottom: 0.5rem;
+                opacity: 1;
+            }
+        }
+    }
+
+    #LiteflixLogo {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        width: 75px;
+    }
+
+    .comingSoon__movies--data {
+        position: absolute;
+        bottom: -2rem;
+        left: 0.5rem;
+        opacity: 0;
+        transition: all 0.2s;
+        z-index: 1;
+
+        h4 {
+            @include font-size(14);
+            font-weight: 700;
+        }
+        p {
+            @include font-size(12);
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .comingSoon {
+        margin-top: auto;
+        padding: 0 4rem;
+
+        .comingSoon__movies {
+            flex-wrap: wrap;
+        }
+
+        .comingSoon__movies--item {
+            width: calc(100% / 2 - 2rem);
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    .comingSoon {
+        padding: 0 2rem;
+
+        .comingSoon__movies--item {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+    }
+}

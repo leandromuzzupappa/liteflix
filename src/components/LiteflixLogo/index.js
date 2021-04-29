@@ -2,7 +2,15 @@ import './styles.scss';
 
 const LiteflixLogo = (props) => {
     return (
-        <svg version="1.1" id="LiteflixLogo" x="0px" y="0px" viewBox="0 0 97.1 28.4" title="aaaaa">
+        <svg
+            version="1.1"
+            id="LiteflixLogo"
+            className={props.classes}
+            x="0px"
+            y="0px"
+            viewBox="0 0 97.1 28.4"
+            title="Liteflix Logo"
+        >
             <g>
                 <path
                     id="Fill_1"

@@ -1,7 +1,7 @@
 import './styles.scss';
 import IconHamburger from '../icons/iconHamburger';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // HOC
 import { esDesktop } from '../../hoc/windowSizes';
