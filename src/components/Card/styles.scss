@@ -1,6 +1,6 @@
-@import '../../../assets/scss/settings.scss';
+@import '../../assets/scss/settings.scss';
 
-.cardSmall {
+.cards {
     position: relative;
     border-radius: 0.3rem;
     overflow: hidden;
@@ -34,7 +34,7 @@
             opacity: 1;
         }
 
-        .cardSmall--data {
+        .card--data {
             bottom: 0.5rem;
             opacity: 1;
         }
@@ -58,7 +58,7 @@
         z-index: 1;
     }
 
-    .cardSmall--data {
+    .card--data {
         position: absolute;
         bottom: -2rem;
         left: 0.5rem;
@@ -121,7 +121,7 @@
         }
     }
 
-    .cardSmall--item--play {
+    .card--item--play {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -131,12 +131,12 @@
         }
     }
 
-    .cardSmall--item--like {
+    .card--item--like {
         top: 0.8rem;
         right: 1rem;
     }
 
-    .cardSmall--item--add {
+    .card--item--add {
         top: 0.8rem;
         right: 3.8rem;
         svg {
@@ -144,8 +144,8 @@
         }
     }
 
-    .cardSmall--item--like,
-    .cardSmall--item--add {
+    .card--item--like,
+    .card--item--add {
         width: 30px;
         height: 30px;
     }

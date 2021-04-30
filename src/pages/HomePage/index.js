@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 // Components
 import FullscreenCover from '../../components/FullscreenCover';
 import ComingSoon from '../../components/ComingSoon';
+import PopularMovies from '../../components/PopularMovies';
 
 const HomePage = (props) => {
     const [nowPlaying, setNowPlaying] = useState([]);
@@ -27,25 +28,23 @@ const HomePage = (props) => {
             setComingSoon(comingSoonArr.slice(0, 4));
 
             let popularArr = _popular.results;
-            setComingSoon(popularArr.slice(0, 4));
+            setPopular(popularArr.slice(4, 8));
         });
     }, [setCoverData, setComingSoon, setNowPlaying]);
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (nowPlaying.length > 0) {
             setInterval(() => {
                 setCoverData(nowPlaying[Math.floor(Math.random() * nowPlaying.length)]);
             }, 50000);
         }
-    }, [nowPlaying]);
+    }, [nowPlaying]); */
 
     return (
         <>
             <FullscreenCover data={coverData} />
-
             <ComingSoon data={comingSoon} />
-
-            <h1>lenny</h1>
+            <PopularMovies data={popular} />
         </>
     );
 };

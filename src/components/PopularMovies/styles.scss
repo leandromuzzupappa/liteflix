@@ -1,11 +1,11 @@
 @import '../../assets/scss/settings.scss';
 
-.comingSoon {
+.popular {
     position: relative;
     width: 100%;
     top: 0rem;
     padding: 0 6rem;
-    margin-top: -10rem;
+    margin: 5rem 0;
 
     h2 {
         @include font-size(20);
@@ -13,35 +13,34 @@
         margin-bottom: 1.3rem;
     }
 
-    .comingSoon__movies {
+    .popular__movies {
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         align-items: center;
         gap: 2rem;
     }
 }
 
 @media (max-width: 1000px) {
-    .comingSoon {
-        margin-top: auto;
+    .popular {
         padding: 0 4rem;
 
-        .comingSoon__movies {
+        .popular__movies {
             flex-wrap: wrap;
         }
 
         .cards {
-            width: calc(100% / 2 - 2rem);
+            width: calc(100% / 2 - 1rem);
         }
     }
 }
 
 @media (max-width: 720px) {
-    .comingSoon {
+    .popular {
         padding: 0 2rem;
 
         .cards {
-            width: 100%;
             margin-bottom: 1rem;
         }
     }
