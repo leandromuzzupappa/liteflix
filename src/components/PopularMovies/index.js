@@ -5,7 +5,6 @@ import Card from '../Card';
 
 const PopularMovies = (props) => {
     let movies = props.data;
-    console.log(movies);
     return (
         <section className="popular">
             <h2>Populares de liteflix</h2>
