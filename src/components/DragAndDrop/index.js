@@ -32,7 +32,7 @@ const DragAndDrop = (props) => {
     );
 
     useEffect(() => {
-        props.lennyTest(files);
+        props.filesUploaded(files);
     }, [files]);
 
     return (

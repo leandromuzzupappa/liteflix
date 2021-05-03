@@ -5,9 +5,7 @@ import iconAdd from '../../assets/images/iconAdd.svg';
 import ModalFullscreen from '../modals/ModalFullscreen';
 
 const AddMovie = (props) => {
-    const handleAddMovie = () => {
-        alert(1);
-    };
+    const handleAddMovie = () => <ModalFullscreen />;
 
     return (
         <>

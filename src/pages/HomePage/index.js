@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 // Components
 import FullscreenCover from '../../components/FullscreenCover';
@@ -10,6 +11,8 @@ const HomePage = (props) => {
     const [coverData, setCoverData] = useState({});
     const [comingSoon, setComingSoon] = useState([]);
     const [popular, setPopular] = useState([]);
+    const [userMovies, setUserMovies] = useState([]);
+    const moviesData = useSelector((state) => state.userMovies);
 
     useEffect(() => {
         const getMovieDbPath = (str) =>
@@ -40,11 +43,35 @@ const HomePage = (props) => {
         }
     }, [nowPlaying]); */
 
+    useEffect(() => {
+        let lsUserMovies = localStorage.getItem('userMovies')
+            ? JSON.parse(localStorage.getItem('userMovies'))
+            : [];
+
+        let userMoviesParsed = lsUserMovies.map((movie) => {
+            return JSON.parse(movie);
+        });
+
+        setUserMovies(userMoviesParsed);
+    }, [moviesData]);
+
     return (
         <>
             <FullscreenCover data={coverData} />
             <ComingSoon data={comingSoon} />
             <PopularMovies data={popular} />
+            {userMovies.length > 0 && (
+                <>
+                    <ul>
+                        {userMovies.map((movie, i) => (
+                            <li key={i}>
+                                <img src={movie.image} alt="dsadsadsa" width="100" />
+                                {movie.name}
+                            </li>
+                        ))}
+                    </ul>
+                </>
+            )}
         </>
     );
 };

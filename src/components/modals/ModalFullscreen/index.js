@@ -1,7 +1,13 @@
 import './styles.scss';
 
-// Components
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addMovie } from '../../../redux/userMovies/movies.actions';
+
+// Helpers
+import { base64FromFile } from '../../../helpers/base64Converter.js';
+
+// Components
 import DragAndDrop from '../../DragAndDrop';
 
 const ModalFullscreen = (props) => {
@@ -11,6 +17,8 @@ const ModalFullscreen = (props) => {
     const [customSelectOpen, setCustomSelectOpen] = useState(false);
     const [optionSelected, setOptionSelected] = useState({});
     const [files, setFiles] = useState({});
+    const [uploadToImgur, setUploadToImgur] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         fetch(
@@ -39,14 +47,9 @@ const ModalFullscreen = (props) => {
     };
     const handleFilesUploaded = (data) => setFiles(data);
 
-    const handleFromSubmit = (e) => {
+    const handleFromSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
-
-        /* console.log(e);
-        console.log(movieName);
-        console.log(optionSelected);
-        console.log(files); */
 
         if (movieName.length < 2) {
             setErrors([...['El nombre de la película no puede estar vacío']]);
@@ -63,12 +66,41 @@ const ModalFullscreen = (props) => {
             return;
         }
 
+        // imagen
+        let image = '';
+        if (uploadToImgur) {
+            const FD = new FormData();
+            FD.append('image', files[0]);
+
+            let imgurUpload = await fetch('https://api.imgur.com/3/image/', {
+                method: 'POST',
+                headers: {
+                    Authorization: `Client-ID ${process.env.REACT_APP_IMGUR_KEY}`,
+                },
+                body: FD,
+            });
+
+            imgurUpload = await imgurUpload.json();
+
+            if (imgurUpload.status === 200) {
+                image = imgurUpload.data.link;
+            } else {
+                setErrors([
+                    ...['Hubo un error interno en imgur.com y la imagen se subió localmente'],
+                ]);
+                image = await base64FromFile(files[0]);
+            }
+        } else {
+            image = await base64FromFile(files[0]);
+        }
+
         // Creo un objeto movie y lo convierto a json
         let userMovie = {
             id: 'userMovie' + Date.now(),
             name: movieName,
             category: optionSelected,
-            //preview: files[0].preview,
+            image,
+            lenny: 21,
         };
         let userMoviesJson = JSON.stringify(userMovie);
 
@@ -77,7 +109,7 @@ const ModalFullscreen = (props) => {
             ? localStorage.getItem('userMovies')
             : [];
 
-        if (userMovies) {
+        if (userMovies && userMovies.length > 0) {
             userMovies = JSON.parse(userMovies);
 
             userMovies.forEach((movie) => {
@@ -97,6 +129,8 @@ const ModalFullscreen = (props) => {
         // Guardo el array nuevo
         localStorage.setItem('userMovies', updatedMovies);
 
+        dispatch(addMovie(updatedMovies));
+
         setFiles({});
         setOptionSelected({});
         setMovieName('');
@@ -115,7 +149,7 @@ const ModalFullscreen = (props) => {
                     </div>
                 )}
 
-                <DragAndDrop lennyTest={handleFilesUploaded} />
+                <DragAndDrop filesUploaded={handleFilesUploaded} clearData={files} />
 
                 <form id="modalFullscreen__container--form" onSubmit={(e) => handleFromSubmit(e)}>
                     <div className="formRow">
@@ -177,6 +211,16 @@ const ModalFullscreen = (props) => {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div id="uploadtoImgur__wrapper" className="formRow">
+                        <input
+                            type="checkbox"
+                            name="uploadtoImgur"
+                            id="uploadtoImgur"
+                            value={uploadToImgur}
+                            onClick={() => setUploadToImgur(!uploadToImgur)}
+                        />
+                        <label htmlFor="uploadtoImgur">Subir portada anonimamente a imgur</label>
                     </div>
                     <div className="formRow">
                         <button type="submit">Subir película</button>
