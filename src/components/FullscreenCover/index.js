@@ -8,10 +8,11 @@ import { esDesktop } from '../../hoc/windowSizes';
 // Components
 import IconPlus from '../icons/IconPlus';
 import IconPlay from '../icons/IconPlay';
+import ModalFullscreen from '../modals/ModalFullscreen';
 
 const FullscreenCover = (props) => {
     let movie = props.data;
-
+    const [showModal, setShowModal] = useState(false);
     const [video, setVideo] = useState(false);
 
     useEffect(() => {
@@ -35,6 +36,8 @@ const FullscreenCover = (props) => {
         }
     }, [movie.id]);
 
+    const handleAddMovie = () => setShowModal(!showModal);
+
     return (
         <section className="fullscreenCover">
             <h3 className="fullscreenCover__subtitle">
@@ -47,7 +50,7 @@ const FullscreenCover = (props) => {
                     <IconPlay />
                     <span>Reproducir</span>
                 </button>
-                <button className="fullscreenCover__actions--addToList">
+                <button className="fullscreenCover__actions--addToList" onClick={handleAddMovie}>
                     <IconPlus />
                     <span>Mi lista</span>
                 </button>
@@ -75,6 +78,7 @@ const FullscreenCover = (props) => {
                     className="fullscreenCover__image"
                 />
             )}
+            {showModal && <ModalFullscreen onClose={handleAddMovie} />}
         </section>
     );
 };

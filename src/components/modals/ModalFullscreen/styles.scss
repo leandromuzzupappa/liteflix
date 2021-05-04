@@ -7,6 +7,7 @@
     width: 100%;
     height: 100%;
     background: transparentize($black, 0.4);
+    z-index: 9;
 }
 
 .modalFullscreen {
@@ -19,7 +20,7 @@
     background: $white;
     padding: 2rem;
     border-radius: 10px;
-    z-index: 1;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -325,6 +326,36 @@
             color: $black;
             &::before {
                 content: '- ';
+            }
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    .modalFullscreen {
+        width: 95%;
+        top: 52%;
+
+        .modalFullscreen__container--dd {
+            padding: 1rem 2rem;
+        }
+    }
+
+    #modalFullscreen__container--form {
+        flex-direction: column;
+
+        .formRow {
+            width: 100%;
+            margin-bottom: 1.5rem;
+
+            input {
+                border-radius: 0;
+            }
+
+            &:last-child {
+                button {
+                    width: 100%;
+                }
             }
         }
     }
