@@ -1,5 +1,6 @@
 @import '../../assets/scss/settings.scss';
 
+.myMovies,
 .comingSoon {
     position: relative;
     width: 100%;
@@ -21,7 +22,22 @@
     }
 }
 
+.myMovies {
+    margin-top: auto;
+    margin-bottom: 3rem;
+
+    .cards {
+        max-width: calc(100% / 4 - 1rem);
+
+        button,
+        #LiteflixLogo {
+            display: none;
+        }
+    }
+}
+
 @media (max-width: 1000px) {
+    .myMovies,
     .comingSoon {
         margin-top: auto;
         padding: 0 4rem;
@@ -34,9 +50,16 @@
             width: calc(100% / 2 - 2rem);
         }
     }
+
+    .myMovies {
+        .cards {
+            max-width: 100%;
+        }
+    }
 }
 
 @media (max-width: 720px) {
+    .myMovies,
     .comingSoon {
         padding: 0 2rem;
 

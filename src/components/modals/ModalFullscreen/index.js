@@ -9,6 +9,7 @@ import { base64FromFile } from '../../../helpers/base64Converter.js';
 
 // Components
 import DragAndDrop from '../../DragAndDrop';
+import UploadingFile from '../../UploadingFile';
 
 const ModalFullscreen = (props) => {
     const [errors, setErrors] = useState([]);
@@ -19,6 +20,7 @@ const ModalFullscreen = (props) => {
     const [files, setFiles] = useState({});
     const [uploadToImgur, setUploadToImgur] = useState(false);
     const dispatch = useDispatch();
+    const [isUploading, setIsUploading] = useState(false);
 
     useEffect(() => {
         fetch(
@@ -66,6 +68,8 @@ const ModalFullscreen = (props) => {
             return;
         }
 
+        setIsUploading(true);
+
         // imagen
         let image = '';
         if (uploadToImgur) {
@@ -86,9 +90,13 @@ const ModalFullscreen = (props) => {
                 image = imgurUpload.data.link;
             } else {
                 setErrors([
-                    ...['Hubo un error interno en imgur.com y la imagen se subió localmente'],
+                    ...[
+                        'Hubo un error interno en imgur.com y la imagen se esta subiendo localmente',
+                    ],
                 ]);
                 image = await base64FromFile(files[0]);
+
+                setTimeout(() => setErrors([]), 5000);
             }
         } else {
             image = await base64FromFile(files[0]);
@@ -97,10 +105,9 @@ const ModalFullscreen = (props) => {
         // Creo un objeto movie y lo convierto a json
         let userMovie = {
             id: 'userMovie' + Date.now(),
-            name: movieName,
+            title: movieName,
             category: optionSelected,
-            image,
-            lenny: 21,
+            backdrop_path: image,
         };
         let userMoviesJson = JSON.stringify(userMovie);
 
@@ -111,15 +118,6 @@ const ModalFullscreen = (props) => {
 
         if (userMovies && userMovies.length > 0) {
             userMovies = JSON.parse(userMovies);
-
-            userMovies.forEach((movie) => {
-                movie = JSON.parse(movie);
-
-                if (movie.name === userMovie.name) {
-                    setErrors([...['Ya agregaste esta película!']]);
-                    return;
-                }
-            });
         }
 
         userMovies.push(userMoviesJson);
@@ -129,7 +127,9 @@ const ModalFullscreen = (props) => {
         // Guardo el array nuevo
         localStorage.setItem('userMovies', updatedMovies);
 
-        dispatch(addMovie(updatedMovies));
+        setTimeout(() => {
+            dispatch(addMovie(updatedMovies));
+        }, 7000);
 
         setFiles({});
         setOptionSelected({});
@@ -138,9 +138,13 @@ const ModalFullscreen = (props) => {
 
     return (
         <>
-            <div className="modalFullscreen">
+            <div className="modalFullscreen fadeInUp">
+                <button class="modalFullscreen__close" onClick={props.onClose}>
+                    x
+                </button>
+
                 {errors.length > 0 && (
-                    <div className="modalFullscreen__errors">
+                    <div className="modalFullscreen__errors modalFullscreen__warning">
                         <ul>
                             {errors.map((err, i) => (
                                 <li key={i}>{err}</li>
@@ -149,83 +153,96 @@ const ModalFullscreen = (props) => {
                     </div>
                 )}
 
-                <DragAndDrop filesUploaded={handleFilesUploaded} clearData={files} />
+                {!isUploading ? (
+                    <>
+                        <DragAndDrop filesUploaded={handleFilesUploaded} clearData={files} />
 
-                <form id="modalFullscreen__container--form" onSubmit={(e) => handleFromSubmit(e)}>
-                    <div className="formRow">
-                        <label htmlFor="movieTitle">Nombre de la película</label>
-                        <input
-                            type="text"
-                            name="movieTitle"
-                            id="movieTitle"
-                            placeholder="Ingresá el nombre de la película"
-                            onChange={(e) => {
-                                handleMovieName(e);
-                            }}
-                            value={movieName}
-                        />
-                    </div>
-                    <div className="formRow">
-                        <label htmlFor="movieCategory">Categoría</label>
-                        <div id="movieCategory" className="customSelect__wrapper">
-                            <div
-                                className={`customSelect ${customSelectOpen && 'open'}`}
-                                onClick={handleCustomSelect}
-                            >
-                                <div className="customSelect__trigger">
-                                    <span name="movieCategory">
-                                        {Object.entries(optionSelected).length > 0
-                                            ? optionSelected.name
-                                            : 'Seleccioná una categoria'}
-                                    </span>
-                                    <div className="customSelect__trigger--arrow"></div>
-                                </div>
-
-                                <div className="customSelect__options">
-                                    <div className="customSelect__options--wrapper">
-                                        <span
-                                            className="customOption"
-                                            data-id="000"
-                                            data-name="Seleccionar"
-                                            onClick={(e) => handleSelectedOption(e)}
-                                        >
-                                            Seleccionar
-                                        </span>
-                                        {genres.map((genre) => (
-                                            <span
-                                                key={genre.id}
-                                                className={`customOption ${
-                                                    Object.entries(optionSelected).length > 0 &&
-                                                    optionSelected.id === genre.id
-                                                        ? 'selected'
-                                                        : ''
-                                                }`}
-                                                data-id={genre.id}
-                                                data-name={genre.name}
-                                                onClick={(e) => handleSelectedOption(e)}
-                                            >
-                                                {genre.name}
+                        <form
+                            id="modalFullscreen__container--form"
+                            onSubmit={(e) => handleFromSubmit(e)}
+                        >
+                            <div className="formRow">
+                                <label htmlFor="movieTitle">Nombre de la película</label>
+                                <input
+                                    type="text"
+                                    name="movieTitle"
+                                    id="movieTitle"
+                                    placeholder="Ingresá el nombre de la película"
+                                    onChange={(e) => {
+                                        handleMovieName(e);
+                                    }}
+                                    value={movieName}
+                                />
+                            </div>
+                            <div className="formRow">
+                                <label htmlFor="movieCategory">Categoría</label>
+                                <div id="movieCategory" className="customSelect__wrapper">
+                                    <div
+                                        className={`customSelect ${customSelectOpen && 'open'}`}
+                                        onClick={handleCustomSelect}
+                                    >
+                                        <div className="customSelect__trigger">
+                                            <span name="movieCategory">
+                                                {Object.entries(optionSelected).length > 0
+                                                    ? optionSelected.name
+                                                    : 'Seleccioná una categoria'}
                                             </span>
-                                        ))}
+                                            <div className="customSelect__trigger--arrow"></div>
+                                        </div>
+
+                                        <div className="customSelect__options">
+                                            <div className="customSelect__options--wrapper">
+                                                <span
+                                                    className="customOption"
+                                                    data-id="000"
+                                                    data-name="Seleccionar"
+                                                    onClick={(e) => handleSelectedOption(e)}
+                                                >
+                                                    Seleccionar
+                                                </span>
+                                                {genres.map((genre) => (
+                                                    <span
+                                                        key={genre.id}
+                                                        className={`customOption ${
+                                                            Object.entries(optionSelected).length >
+                                                                0 && optionSelected.id === genre.id
+                                                                ? 'selected'
+                                                                : ''
+                                                        }`}
+                                                        data-id={genre.id}
+                                                        data-name={genre.name}
+                                                        onClick={(e) => handleSelectedOption(e)}
+                                                    >
+                                                        {genre.name}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div id="uploadtoImgur__wrapper" className="formRow">
-                        <input
-                            type="checkbox"
-                            name="uploadtoImgur"
-                            id="uploadtoImgur"
-                            value={uploadToImgur}
-                            onClick={() => setUploadToImgur(!uploadToImgur)}
-                        />
-                        <label htmlFor="uploadtoImgur">Subir portada anonimamente a imgur</label>
-                    </div>
-                    <div className="formRow">
-                        <button type="submit">Subir película</button>
-                    </div>
-                </form>
+                            <div id="uploadtoImgur__wrapper" className="formRow">
+                                <input
+                                    type="checkbox"
+                                    name="uploadtoImgur"
+                                    id="uploadtoImgur"
+                                    value={uploadToImgur}
+                                    onClick={() => setUploadToImgur(!uploadToImgur)}
+                                />
+                                <label htmlFor="uploadtoImgur">
+                                    Subir portada anonimamente a imgur
+                                </label>
+                            </div>
+                            <div className="formRow">
+                                <button type="submit">Subir película</button>
+                            </div>
+                        </form>
+                    </>
+                ) : (
+                    <>
+                        <UploadingFile />
+                    </>
+                )}
             </div>
             <div className="modalFullscreen__overlay"></div>
         </>

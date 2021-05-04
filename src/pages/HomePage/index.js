@@ -58,19 +58,14 @@ const HomePage = (props) => {
     return (
         <>
             <FullscreenCover data={coverData} />
-            <ComingSoon data={comingSoon} />
+            <ComingSoon data={comingSoon} sectionTitle="Próximamente" sectionClass="comingSoon" />
             <PopularMovies data={popular} />
             {userMovies.length > 0 && (
-                <>
-                    <ul>
-                        {userMovies.map((movie, i) => (
-                            <li key={i}>
-                                <img src={movie.image} alt="dsadsadsa" width="100" />
-                                {movie.name}
-                            </li>
-                        ))}
-                    </ul>
-                </>
+                <ComingSoon
+                    data={userMovies}
+                    sectionTitle="Mis peliculas"
+                    sectionClass="myMovies"
+                />
             )}
         </>
     );

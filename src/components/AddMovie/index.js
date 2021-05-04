@@ -1,11 +1,14 @@
 import './styles.scss';
 import iconAdd from '../../assets/images/iconAdd.svg';
 
+import { useState } from 'react';
+
 // Components
 import ModalFullscreen from '../modals/ModalFullscreen';
 
 const AddMovie = (props) => {
-    const handleAddMovie = () => <ModalFullscreen />;
+    const [showModal, setShowModal] = useState(false);
+    const handleAddMovie = () => setShowModal(!showModal);
 
     return (
         <>
@@ -13,7 +16,7 @@ const AddMovie = (props) => {
                 <img src={iconAdd} alt="add" />
             </button>
 
-            <ModalFullscreen />
+            {showModal && <ModalFullscreen onClose={handleAddMovie} />}
         </>
     );
 };

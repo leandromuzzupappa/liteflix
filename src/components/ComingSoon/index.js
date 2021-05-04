@@ -7,8 +7,8 @@ const ComingSoon = (props) => {
     let movies = props.data;
 
     return (
-        <section className="comingSoon">
-            <h2>Próximamente</h2>
+        <section className={props.sectionClass}>
+            <h2>{props.sectionTitle}</h2>
 
             <div className="comingSoon__movies">
                 {movies.map((movie, i) => (
@@ -17,6 +17,8 @@ const ComingSoon = (props) => {
                         title={movie.title}
                         img={movie.backdrop_path}
                         releaseDate={movie.release_date}
+                        category={movie.category}
+                        isBase64={props.sectionClass === 'myMovies' ? true : false}
                     />
                 ))}
             </div>

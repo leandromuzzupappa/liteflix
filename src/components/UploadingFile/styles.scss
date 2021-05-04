@@ -1,0 +1,170 @@
+@import '../../assets/scss/settings.scss';
+
+.uploadingFile {
+    padding: 1rem;
+    background: $gray1;
+    border-radius: 0.8rem;
+
+    h4 {
+        margin-bottom: 1rem;
+    }
+
+    .uploadingFile__loadingBar {
+        position: relative;
+        width: 100%;
+        height: 20px;
+        background: $gray2;
+        overflow: hidden;
+
+        &,
+        * {
+            border-radius: 1rem;
+        }
+    }
+
+    .uploadingFile__loadingBar--progress {
+        display: block;
+        height: 100%;
+        background: $blue;
+        transition: all 3s;
+    }
+
+    &.completed {
+        animation-duration: 0.8s;
+        animation-fill-mode: both;
+        -webkit-animation-duration: 0.8s;
+        -webkit-animation-fill-mode: both;
+        opacity: 1;
+        animation-name: animation;
+        -webkit-animation-name: animation;
+        pointer-events: none;
+    }
+
+    @keyframes animation {
+        0% {
+            transform: translateY(0%);
+        }
+
+        10% {
+            transform: translateY(-20%);
+        }
+        50% {
+            transform: translateY(-40%);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+    }
+}
+
+.uploadingFile__response {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h3 {
+        opacity: 0;
+        transition: all 13s;
+    }
+
+    &.completed {
+        @keyframes anim__uploadingFile__response__icon {
+            0% {
+                transform: translate(-50%, 200%) scale(1);
+            }
+            75% {
+                transform: translate(-50%, -70%) scale(1);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(21);
+            }
+        }
+        @keyframes anim__uploadingFile__response__icon2 {
+            50% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 1;
+            }
+        }
+        @keyframes anim__uploadingFile__response__text {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .uploadingFile__response--icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: #27ae60;
+            border-radius: 4rem;
+            transform-origin: center center;
+
+            animation-duration: 1s;
+            animation-delay: 0.8s;
+            animation-fill-mode: both;
+            -webkit-animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            opacity: 1;
+            animation-name: anim__uploadingFile__response__icon;
+            -webkit-animation-name: anim__uploadingFile__response__icon;
+            pointer-events: none;
+            z-index: -1;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: block;
+                width: 40px;
+                height: 40px;
+                background: $white;
+                border-radius: 4rem;
+                transform-origin: center center;
+                transform: translate(-50%, -50%) scale(0.1);
+                animation-duration: 1s;
+                animation-delay: 1.5s;
+                animation-fill-mode: both;
+                -webkit-animation-duration: 1s;
+                -webkit-animation-fill-mode: both;
+                opacity: 0;
+                animation-name: anim__uploadingFile__response__icon2;
+                -webkit-animation-name: anim__uploadingFile__response__icon2;
+                pointer-events: none;
+            }
+        }
+
+        h3 {
+            animation-duration: 1s;
+            animation-delay: 2s;
+            animation-fill-mode: both;
+            -webkit-animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            opacity: 1;
+            animation-name: anim__uploadingFile__response__text;
+            -webkit-animation-name: anim__uploadingFile__response__text;
+            pointer-events: none;
+        }
+    }
+}
