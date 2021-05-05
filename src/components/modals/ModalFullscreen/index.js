@@ -139,7 +139,7 @@ const ModalFullscreen = (props) => {
     return (
         <>
             <div className="modalFullscreen fadeInUp">
-                <button class="modalFullscreen__close" onClick={props.onClose}>
+                <button className="modalFullscreen__close" onClick={props.onClose}>
                     x
                 </button>
 

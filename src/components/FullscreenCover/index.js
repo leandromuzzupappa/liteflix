@@ -3,7 +3,7 @@ import './styles.scss';
 import { useState, useEffect } from 'react';
 
 // Hoc
-import { esDesktop } from '../../hoc/windowSizes';
+import { esDesktop } from '../../helpers/windowSizes';
 
 // Components
 import IconPlus from '../icons/IconPlus';
@@ -26,8 +26,9 @@ const FullscreenCover = (props) => {
                 .then((data) => {
                     let videosArr = data.results;
 
-                    if (videosArr) {
+                    if (videosArr && videosArr.length > 0) {
                         let _video = videosArr[Math.floor(Math.random() * videosArr.length)].key;
+
                         setTimeout(() => {
                             setVideo(_video);
                         }, 2500);
@@ -40,26 +41,34 @@ const FullscreenCover = (props) => {
 
     return (
         <section className="fullscreenCover">
-            <h3 className="fullscreenCover__subtitle">
-                Original de <span>Liteflix</span>
-            </h3>
+            {!props.noInfo && (
+                <>
+                    <h3 className="fullscreenCover__subtitle">
+                        Original de <span>Liteflix</span>
+                    </h3>
+
+                    <div className="fullscreenCover__actions">
+                        <button className="fullscreenCover__actions--play">
+                            <IconPlay />
+                            <span>Reproducir</span>
+                        </button>
+                        <button
+                            className="fullscreenCover__actions--addToList"
+                            onClick={handleAddMovie}
+                        >
+                            <IconPlus />
+                            <span>Mi lista</span>
+                        </button>
+                    </div>
+
+                    <div className="fullscreenCover__description">
+                        <h4>Descripción</h4>
+                        <p>{movie.overview}</p>
+                    </div>
+                </>
+            )}
+
             <h1 className="fullscreenCover__title">{movie.title}</h1>
-
-            <div className="fullscreenCover__actions">
-                <button className="fullscreenCover__actions--play">
-                    <IconPlay />
-                    <span>Reproducir</span>
-                </button>
-                <button className="fullscreenCover__actions--addToList" onClick={handleAddMovie}>
-                    <IconPlus />
-                    <span>Mi lista</span>
-                </button>
-            </div>
-
-            <div className="fullscreenCover__description">
-                <h4>Descripción</h4>
-                <p>{movie.overview}</p>
-            </div>
 
             {video ? (
                 <>

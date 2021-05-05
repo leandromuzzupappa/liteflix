@@ -4,7 +4,7 @@ import IconHamburger from '../icons/iconHamburger';
 import { useState } from 'react';
 
 // HOC
-import { esDesktop } from '../../hoc/windowSizes';
+import { esDesktop } from '../../helpers/windowSizes';
 
 // Components
 import LiteflixLogo from '../LiteflixLogo';

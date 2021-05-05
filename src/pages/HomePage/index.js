@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
+// Helpers
+import { getMovieDbPath } from '../../helpers/getMovieDbPath';
+
 // Components
 import FullscreenCover from '../../components/FullscreenCover';
 import ComingSoon from '../../components/ComingSoon';
@@ -15,9 +18,6 @@ const HomePage = (props) => {
     const moviesData = useSelector((state) => state.userMovies);
 
     useEffect(() => {
-        const getMovieDbPath = (str) =>
-            `https://api.themoviedb.org/3/movie/${str}?api_key=${process.env.REACT_APP_DB_KEY}`;
-
         Promise.all([
             fetch(getMovieDbPath('now_playing')).then((res) => res.json()),
             fetch(getMovieDbPath('upcoming')).then((res) => res.json()),

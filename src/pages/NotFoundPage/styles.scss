@@ -1,0 +1,101 @@
+@import '../../assets/scss/settings.scss';
+
+.layout__NotFoundLayout {
+    .header {
+        .header__menu,
+        .header__links {
+            display: none;
+        }
+
+        .header__logo {
+            #LiteflixLogo {
+                .st0 {
+                    fill: $green;
+                }
+            }
+        }
+    }
+
+    .fullscreenCover {
+        opacity: 0.5;
+        padding-bottom: 0;
+        height: 100vh;
+        justify-content: flex-end;
+        align-items: flex-end;
+
+        .fullscreenCover__title {
+            text-align: right;
+            @include font-size(14);
+            font-family: $montserrat;
+            line-height: inherit;
+            display: block;
+            letter-spacing: 0.69px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+    }
+
+    .notFound__info {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h2 {
+            font-family: $robotoSlab;
+            @include font-size(48);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        p {
+            @include font-size(20);
+            line-height: 36px;
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        a {
+            padding: 1rem 2rem;
+            background: $greenHover;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            strong {
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            &:hover {
+                background: $gray5;
+            }
+            &:active {
+                background: $green;
+            }
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    .layout__NotFoundLayout {
+        .notFound__info {
+            padding: 0 2rem;
+
+            h2 {
+                @include font-size(36);
+            }
+
+            p {
+                @include font-size(18);
+                line-height: 24px;
+            }
+            
+        }
+    }
+}

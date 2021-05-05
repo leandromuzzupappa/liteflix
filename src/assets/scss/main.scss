@@ -5,7 +5,6 @@
     padding: 0;
     box-sizing: border-box;
     font-weight: 400;
-    color: $white;
 
     &:focus {
         outline: none;
@@ -15,7 +14,6 @@
 body {
     font-family: $montserrat;
     font-size: 16px;
-    background: $black;
 }
 
 ul {
@@ -74,4 +72,12 @@ button {
     opacity: 0;
     animation-name: fadeInUp;
     -webkit-animation-name: fadeInUp;
+}
+
+.layout__NotFoundLayout,
+.layout__HomeLayout {
+    background: $black;
+    * {
+        color: $white;
+    }
 }

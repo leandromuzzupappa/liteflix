@@ -37,6 +37,7 @@
     }
 
     .fullscreenCover__subtitle {
+        order: -2;
         text-transform: uppercase;
         @include font-size(24);
 
@@ -46,6 +47,7 @@
     }
 
     .fullscreenCover__title {
+        order: -1;
         font-family: $robotoSlab;
         font-weight: 700;
         @include font-size(96);
