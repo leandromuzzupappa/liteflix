@@ -36,11 +36,9 @@ const UserMoviesList = (props) => {
         let userMovies = getUserMovies();
         let userMoviesUpdated = [];
 
-        userMovies.map((movie) => {
-            if (movie.id !== movieId) {
-                userMoviesUpdated.push(JSON.stringify(movie));
-            }
-        });
+        userMovies.map((movie) =>
+            movie.id !== movieId ? userMoviesUpdated.push(JSON.stringify(movie)) : ''
+        );
 
         localStorage.setItem('userMovies', JSON.stringify(userMoviesUpdated));
 

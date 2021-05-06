@@ -33,6 +33,7 @@ const DragAndDrop = (props) => {
 
     useEffect(() => {
         props.filesUploaded(files);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [files]);
 
     return (

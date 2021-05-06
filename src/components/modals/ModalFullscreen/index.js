@@ -1,7 +1,7 @@
 import './styles.scss';
 
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addMovie } from '../../../redux/userMovies/movies.actions';
 
 // Helpers

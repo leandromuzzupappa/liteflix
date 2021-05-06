@@ -2,7 +2,7 @@ import './styles.scss';
 import iconBell from '../../assets/images/iconBell.svg';
 import iconArrow from '../../assets/images/iconArrow.svg';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { esDesktop } from '../../helpers/windowSizes';
 
 // Components

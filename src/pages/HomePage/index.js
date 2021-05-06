@@ -35,13 +35,13 @@ const HomePage = (props) => {
         });
     }, [setCoverData, setComingSoon, setNowPlaying]);
 
-    /* useEffect(() => {
+    useEffect(() => {
         if (nowPlaying.length > 0) {
             setInterval(() => {
                 setCoverData(nowPlaying[Math.floor(Math.random() * nowPlaying.length)]);
             }, 50000);
         }
-    }, [nowPlaying]); */
+    }, [nowPlaying]);
 
     useEffect(() => {
         let lsUserMovies = localStorage.getItem('userMovies')

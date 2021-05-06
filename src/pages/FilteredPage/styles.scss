@@ -1,0 +1,15 @@
+@import '../../assets/scss/settings.scss';
+
+.layout__FilteredLayout {
+    header {
+        * {
+            color: $white;
+        }
+    }
+    color: $white;
+    background: $black;
+}
+
+#FilteredLayout {
+    padding: 5rem 6rem 2rem;
+}

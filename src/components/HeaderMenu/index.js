@@ -8,11 +8,11 @@ const HeaderMenu = (props) => {
     return (
         <nav className="header__menu">
             <ul>
-                <HeaderMenuItem text="Inicio" link="#inicio" />
-                <HeaderMenuItem text="Series" link="#series" />
-                <HeaderMenuItem text="Películas" link="#peliculas" />
-                <HeaderMenuItem text="Agregados recientemente" link="#agregados_recientemente" />
-                <HeaderMenuItem text="Mi lista" link="user/my-list" />
+                <HeaderMenuItem text="Inicio" link="/" />
+                <HeaderMenuItem text="Series" link="/browse/series" />
+                <HeaderMenuItem text="Películas" link="/browse/peliculas" />
+                {/* <HeaderMenuItem text="Agregados recientemente" link="#agregados_recientemente" /> */}
+                <HeaderMenuItem text="Mi lista" link="/user/my-list" />
                 <li>
                     <AddMovie />
                 </li>
