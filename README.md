@@ -14,9 +14,7 @@
 
 <br>
 
-## List routes
-
-### Home
+## Routes
 
 ```
 Homepage: /
