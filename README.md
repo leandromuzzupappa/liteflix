@@ -3,6 +3,8 @@
 ## Requirements
 
 -   [Node and NPM](https://nodejs.org/en/)
+-   [The Movie DB API Key](https://www.themoviedb.org/documentation/api)
+-   [IMGUR API Key](https://imgur.com/)
 
 <br>
 
