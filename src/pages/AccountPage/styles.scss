@@ -1,0 +1,21 @@
+@import '../../assets/scss/settings.scss';
+
+.layout__AccountLayout {
+    header {
+        background: $black;
+
+        .header__links--notifications,
+        .header__menu--li,
+        .header__menu {
+            display: none;
+        }
+    }
+}
+
+#AccountLayout {
+    padding: 7rem 2rem 0;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 100vh;
+    margin: 0 auto;
+}

@@ -26,8 +26,12 @@
     margin-top: auto;
     margin-bottom: 3rem;
 
+    .comingSoon__movies {
+        flex-wrap: wrap;
+    }
+
     .cards {
-        max-width: calc(100% / 4 - 1rem);
+        max-width: calc(100% / 4 - 2rem);
 
         button,
         #LiteflixLogo {

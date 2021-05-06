@@ -12,7 +12,7 @@ const HeaderMenu = (props) => {
                 <HeaderMenuItem text="Series" link="#series" />
                 <HeaderMenuItem text="Películas" link="#peliculas" />
                 <HeaderMenuItem text="Agregados recientemente" link="#agregados_recientemente" />
-                <HeaderMenuItem text="Mi lista" link="#mi_lista" />
+                <HeaderMenuItem text="Mi lista" link="user/my-list" />
                 <li>
                     <AddMovie />
                 </li>

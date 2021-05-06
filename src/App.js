@@ -2,10 +2,12 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 
 // Layouts
 import HomeLayout from './layouts/HomeLayout';
+import AccountLayout from './layouts/AccountLayout';
 import NotFoundLayout from './layouts/NotFoundLayout';
 
 // Pages
 import HomePage from './pages/HomePage';
+import AccountPage from './pages/AccountPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 // Components
@@ -25,6 +27,15 @@ function App() {
                             <HomeLayout>
                                 <HomePage />
                             </HomeLayout>
+                        )}
+                    />
+
+                    <Route
+                        path="/user/my-list"
+                        render={() => (
+                            <AccountLayout>
+                                <AccountPage />
+                            </AccountLayout>
                         )}
                     />
 
