@@ -13,6 +13,7 @@ const PopularMovies = (props) => {
                 {movies.map((movie, i) => (
                     <Card
                         key={i}
+                        id={movie.id}
                         title={movie.title}
                         img={movie.poster_path}
                         releaseDate={movie.release_date}

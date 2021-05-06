@@ -1,0 +1,62 @@
+@import '../../../assets/scss/settings.scss';
+
+.YoutubeModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparentize($black, 0.2);
+    z-index: 12;
+
+    .YoutubeModal__close {
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        border-radius: 0;
+        z-index: 0;
+        background: transparent;
+
+        &::before {
+            content: 'click fuera del video para cerrar';
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: $gray3;
+        }
+
+        &:hover {
+            border: 0;
+        }
+    }
+
+    .YoutubeModal__container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 90%;
+        max-width: 1000px;
+        padding-bottom: 30%;
+    }
+
+    iframe {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .YoutubeModal {
+        .YoutubeModal__container {
+            padding-bottom: 55%;
+        }
+    }
+}

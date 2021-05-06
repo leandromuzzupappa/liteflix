@@ -9,11 +9,13 @@ import { esDesktop } from '../../helpers/windowSizes';
 import IconPlus from '../icons/IconPlus';
 import IconPlay from '../icons/IconPlay';
 import ModalFullscreen from '../modals/ModalFullscreen';
+import YoutubeModal from '../modals/YoutubeModal';
 
 const FullscreenCover = (props) => {
     let movie = props.data;
     const [showModal, setShowModal] = useState(false);
     const [video, setVideo] = useState(false);
+    const [playVideo, setPlayVideo] = useState(false);
 
     useEffect(() => {
         setVideo(false);
@@ -28,6 +30,7 @@ const FullscreenCover = (props) => {
 
                     if (videosArr && videosArr.length > 0) {
                         let _video = videosArr[Math.floor(Math.random() * videosArr.length)].key;
+                        console.log(_video);
 
                         setTimeout(() => {
                             setVideo(_video);
@@ -48,7 +51,10 @@ const FullscreenCover = (props) => {
                     </h3>
 
                     <div className="fullscreenCover__actions">
-                        <button className="fullscreenCover__actions--play">
+                        <button
+                            className="fullscreenCover__actions--play"
+                            onClick={() => setPlayVideo(!playVideo)}
+                        >
                             <IconPlay />
                             <span>Reproducir</span>
                         </button>
@@ -75,7 +81,7 @@ const FullscreenCover = (props) => {
                     <iframe
                         className="fullscreenCover__iframe"
                         src={`https://www.youtube.com/embed/${video}?autoplay=1&mute=1&modestbranding=1&showinfo=0&autohide=1&rel=0&controls=0&loop=1`}
-                        title="YouTube video player"
+                        title={movie.title}
                         frameBorder="0"
                         allowFullScreen
                     ></iframe>
@@ -88,6 +94,9 @@ const FullscreenCover = (props) => {
                 />
             )}
             {showModal && <ModalFullscreen onClose={handleAddMovie} />}
+            {playVideo && (
+                <YoutubeModal movieId={movie.id} onClose={() => setPlayVideo(!playVideo)} />
+            )}
         </section>
     );
 };

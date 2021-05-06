@@ -14,6 +14,7 @@ const ComingSoon = (props) => {
                 {movies.map((movie, i) => (
                     <Card
                         key={i}
+                        id={movie.id}
                         title={movie.title}
                         img={movie.backdrop_path}
                         releaseDate={movie.release_date}
