@@ -21,4 +21,100 @@
         background: $black;
         z-index: -4;
     }
+
+    .header__menu {
+        width: calc(300px - 4rem);
+        margin-left: 1rem;
+        ul {
+            flex-direction: column;
+            align-items: flex-start;
+            li {
+                width: 100%;
+
+                &::after {
+                    display: none;
+                }
+            }
+        }
+
+        a {
+            @include font-size(16);
+            display: block;
+            width: 100%;
+            padding: 0 0 1.3rem;
+        }
+
+        #addMovie {
+            padding: 0 2rem;
+            width: 100%;
+            margin-bottom: 1.5rem;
+
+            img {
+                margin-right: 1rem;
+            }
+
+            &::after {
+                position: relative;
+                width: auto;
+                transform: inherit;
+            }
+
+            &:hover {
+            }
+        }
+    }
+
+    .header__links {
+        & > ul {
+            display: none;
+        }
+
+        .header__links--users-modal {
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: inherit;
+            background: transparent;
+            width: calc(300px - 2rem);
+
+            .modal__accounts {
+                ul {
+                    width: 100%;
+                    li:not(:nth-child(1)) {
+                        display: none;
+                    }
+
+                    li {
+                        width: 100%;
+                        background: transparentize($gray2, 0.85);
+                        border-radius: 2rem;
+                    }
+
+                    svg {
+                        width: 40px;
+                        margin-right: 1rem;
+                    }
+                    a {
+                        @include font-size(16);
+                        color: $white;
+                    }
+                }
+            }
+
+            .modal__links {
+                a {
+                    border-bottom: 1px solid transparentize($gray2, 0.8);
+                    @include font-size(16);
+                    color: $white;
+                    margin-bottom: 0.6rem;
+                    padding-bottom: 0.6rem;
+                }
+            }
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+    }
 }

@@ -1,10 +1,17 @@
 import './styles.scss';
 
+// Components
+import HeaderMenu from '../HeaderMenu';
+import HeaderUserLinks from '../HeaderUserLinks';
+
 const HeaderMenuMobile = (props) => {
     return (
-        <div className={`header__menuMobile`}>
-            <h1>lenny</h1>
-        </div>
+        <>
+            <div className={`header__menuMobile`}>
+                <HeaderMenu />
+                <HeaderUserLinks />
+            </div>
+        </>
     );
 };
 
